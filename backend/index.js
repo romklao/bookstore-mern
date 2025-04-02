@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
   const __dirname = path.dirname(__filename);
 
   // Serve static files from the frontend build directory
-  const clientPath = path.join(__dirname, "../../client/dist");
+  const clientPath = path.join(__dirname, "client", "dist");
 
   app.use(express.static(clientPath));
 
