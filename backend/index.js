@@ -18,6 +18,19 @@ app.use(cors());
 //   methods: "GET, POST, PUT, DELETE",
 //   allowedHeaders: "Content-Type",
 // }));
+import path from "path";
+
+// Serve frontend in production
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  });
+}
+
 app.get("/", (request, response) => {
   response.send("Welcoome to MERN stack tutorial");
 });
