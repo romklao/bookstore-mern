@@ -1,7 +1,7 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-// import bookRoute from "./routes/booksRoute.js";
+import bookRoute from "./routes/booksRoute.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
 //   response.send("Welcoome to MERN stack tutorial");
 // });
 
-// app.use("/books", bookRoute);
+app.use("/books", bookRoute);
 
 app.listen(PORT, () => {
   console.log(`App is listening to port: ${PORT}`);
