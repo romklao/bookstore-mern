@@ -21,14 +21,19 @@ app.use(cors());
 //   allowedHeaders: "Content-Type",
 // }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "dist")));
+  // Resolve __dirname in ES modules
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
 
+  // Serve static files from the frontend build directory
+  const clientPath = path.join(__dirname, "../../client/dist");
+
+  app.use(express.static(clientPath));
+
+  // Handle all other routes by sending index.html
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+    res.sendFile(path.join(clientPath, "index.html"));
   });
 }
 
