@@ -1,8 +1,12 @@
-import express from "express";
-import { PORT, mongoDBURL } from "./config.js";
-import mongoose from "mongoose";
-import bookRoute from "./routes/booksRoute.js";
-import cors from "cors";
+require('dotenv').config();
+const express  = require("express");
+const mongoose = require('mongoose');
+const cors     = require('cors');
+
+//Book Routes
+const bRts     = require('./routes/booksRoute.js');
+//User Routes
+const uRts     = require('./routes/userRoutes.js');
 
 const app = express();
 
@@ -18,10 +22,11 @@ app.use(cors());
 //   methods: "GET, POST, PUT, DELETE",
 //   allowedHeaders: "Content-Type",
 // }));
-import path from "path";
+
+const path = require("path");
 
 // Serve frontend in production
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "dist")));
@@ -35,14 +40,16 @@ app.get("/", (request, response) => {
   response.send("Welcoome to MERN stack tutorial");
 });
 
-app.use("/books", bookRoute);
+app.use("/books", bRts);
 
-app.listen(PORT, () => {
-  console.log(`App is listening to port: ${PORT}`);
+app.use('/users',uRts);
+
+app.listen(process.env.PORT, () => {
+  console.log(`App is listening to port: ${process.env.PORT}`);
 });
 
 mongoose
-  .connect(mongoDBURL)
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected to MongoDB");
   })
