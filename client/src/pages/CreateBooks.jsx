@@ -11,6 +11,8 @@ const CreateBooks = () => {
   const [publishYear, setPublishYear] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
+
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -22,7 +24,7 @@ const CreateBooks = () => {
     }
     setLoading(true)
     axios
-      .post('http://localhost:5555/books', data)
+      .post(`${baseUrl}/books`, data)
       .then(() => {
         setLoading(false)
         enqueueSnackbar('Book created successfully', { variant: 'success' })

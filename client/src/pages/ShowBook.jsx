@@ -8,11 +8,12 @@ const ShowBook = () => {
   const [book, setBook] = useState({})
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
+  const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
 
   useEffect(() => {
     setLoading(true)
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`${baseUrl}/books/${id}`)
       .then((response) => {
         setBook(response.data)
         setLoading(false)

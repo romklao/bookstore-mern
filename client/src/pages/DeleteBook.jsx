@@ -11,10 +11,12 @@ const DeleteBook = () => {
   const { id } = useParams()
   const { enqueueSnackbar } = useSnackbar()
 
+  const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
+
   const handleDeleteBook = () => {
     setLoading(true)
     axios
-      .delete(`http://localhost:5555/books/${id}`)
+      .delete(`${baseUrl}/books/${id}`)
       .then(() => {
         setLoading(false)
         enqueueSnackbar('Book deleted successfully', { variant: 'success' })
