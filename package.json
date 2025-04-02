@@ -2,6 +2,7 @@
   "name": "bookstore-mern-stack",
   "version": "1.0.0",
   "description": "",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "install": "cd backend && npm install && cd ../client && npm install",
