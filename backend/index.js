@@ -3,6 +3,8 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import bookRoute from "./routes/booksRoute.js";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -18,10 +20,9 @@ app.use(cors());
 //   methods: "GET, POST, PUT, DELETE",
 //   allowedHeaders: "Content-Type",
 // }));
-import path from "path";
 
-// Serve frontend in production
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "dist")));
