@@ -46,6 +46,8 @@ router.get("/", async (request, response) => {
 router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
+    console.log("id", id);
+
     const book = await Book.findById(id);
     if (book) {
       return response.status(200).send(book);
