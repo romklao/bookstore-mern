@@ -23,6 +23,8 @@ app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
   // Resolve __dirname in ES modules
+  console.log("Connecting to MongoDB with URL:", mongoDBURL);
+
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
