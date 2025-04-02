@@ -1,7 +1,8 @@
 import express from "express";
 import { Book } from "../models/bookModel.js";
+import { Router } from "express";
 
-const router = express.Router();
+const router = Router();
 
 router.post("/", async (request, response) => {
   try {
