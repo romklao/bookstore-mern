@@ -1,6 +1,6 @@
-import express from "express";
 import { Book } from "../models/bookModel.js";
 import { Router } from "express";
+import { Types } from "mongoose";
 
 const router = Router();
 
@@ -47,7 +47,9 @@ router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
     console.log("id", id);
-
+    if (!Types.ObjectId.isValid(id)) {
+      return response.status(400).send({ message: "Invalid book ID" });
+    }
     const book = await Book.findById(id);
     if (book) {
       return response.status(200).send(book);
