@@ -39,9 +39,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.get("/", (request, response) => {
-  response.send("Welcoome to MERN stack tutorial");
-});
+// app.get("/", (request, response) => {
+//   response.send("Welcoome to MERN stack tutorial");
+// });
 
 app.use("/books", bookRoute);
 
