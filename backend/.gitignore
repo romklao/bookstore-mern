@@ -1,0 +1,12 @@
+.vscode
+.idea
+*.log
+.idea
+
+node_modules/
+coverage/
+logs/
+
+.eslintcache
+
+.env
