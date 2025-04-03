@@ -23,7 +23,7 @@
     "url": "https://github.com/romklao/bookstore-mern/issues"
   },
   "engines": {
-    "node": "18.x",
+    "node": "20.x",
     "npm": "10.x"
   },
   "homepage": "https://github.com/romklao/bookstore-mern#readme"
