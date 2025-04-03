@@ -11,7 +11,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [showType, setShowType] = useState('table')
   const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
-  console.log(baseUrl)
   console.log('books', books)
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const Home = () => {
     axios
       .get(`${baseUrl}/books`)
       .then((response) => {
-        console.log(response.data)
+        console.log('Books fetched:', response.data)
 
         setBooks(response.data.data)
         setLoading(false)
