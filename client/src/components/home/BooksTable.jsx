@@ -5,6 +5,9 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { MdOutlineDelete } from 'react-icons/md'
 
 const BooksTable = ({ books }) => {
+  if (!books || books.length === 0) {
+    return <p>No books available</p> // Show a fallback message if no books are found
+  }
   return (
     <table className="w-full border-separate border-spacing-2">
       <thead>

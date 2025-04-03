@@ -17,6 +17,8 @@ const Home = () => {
     axios
       .get(`${baseUrl}/books`)
       .then((response) => {
+        console.log(response.data)
+
         setBooks(response.data.data)
         setLoading(false)
       })
