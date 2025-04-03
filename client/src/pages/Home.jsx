@@ -12,6 +12,7 @@ const Home = () => {
   const [showType, setShowType] = useState('table')
   const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
   console.log(baseUrl)
+  console.log('books', books)
 
   useEffect(() => {
     setLoading(true)
