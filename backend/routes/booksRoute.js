@@ -31,6 +31,8 @@ router.post("/", async (request, response) => {
 });
 
 router.get("/", async (request, response) => {
+  console.log("books route hit");
+
   try {
     const books = await Book.find();
     if (books.length === 0) {
