@@ -13,15 +13,15 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 // Option 1: Allow All Origins with Default of cors(*)
-// app.use(cors());
+app.use(cors());
 // Option 2: Allow Custom Origins
-app.use(
-  cors({
-    origin: "*", // Allow any origin (use specific domains for production)
-    methods: "GET, POST, PUT, DELETE",
-    allowedHeaders: "Content-Type, Origin, Referer, Authorization", // Ensure headers like Referer are allowed
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*", // Allow any origin (use specific domains for production)
+//     methods: "GET, POST, PUT, DELETE",
+//     allowedHeaders: "Content-Type, Origin, Referer, Authorization", // Ensure headers like Referer are allowed
+//   })
+// );
 
 app.use((req, res, next) => {
   res.setHeader("Cache-Control", "no-store"); // Prevent caching
