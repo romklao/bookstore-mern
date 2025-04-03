@@ -13,15 +13,13 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 // Option 1: Allow All Origins with Default of cors(*)
-// app.use(cors());
+app.use(cors());
 // Option 2: Allow Custom Origins
-app.use(
-  cors({
-    origin: "https://bookstore-mern-9bc618ec0bda.herokuapp.com", // Allow frontend domain
-    methods: "GET, POST, PUT, DELETE",
-    credentials: true, // Allow cookies if needed
-  })
-);
+// app.use(cors({
+//   origin: "http://localhost:3000",
+//   methods: "GET, POST, PUT, DELETE",
+//   allowedHeaders: "Content-Type",
+// }));
 
 if (process.env.NODE_ENV === "production") {
   // Resolve __dirname in ES modules
@@ -46,6 +44,11 @@ app.get("/", (request, response) => {
 });
 
 app.use("/books", booksRoute);
+
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none"); // Adjust value as needed
+  next();
+});
 
 app.listen(PORT, () => {
   console.log(`App is listening to port: ${PORT}`);
