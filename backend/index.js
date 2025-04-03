@@ -28,6 +28,22 @@ app.use((req, res, next) => {
   next();
 });
 
+// if (process.env.NODE_ENV === "production") {
+//   // Resolve __dirname in ES modules
+//   const __filename = fileURLToPath(import.meta.url);
+//   const __dirname = path.dirname(__filename);
+
+//   // Serve static files from the frontend build directory
+//   const clientPath = path.join(__dirname, "../../client/dist");
+
+//   app.use(express.static(clientPath));
+
+//   // Handle all other routes by sending index.html
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(clientPath, "index.html"));
+//   });
+// }
+
 if (process.env.NODE_ENV === "production") {
   // Resolve __dirname in ES modules
   console.log("Connecting to MongoDB with URL:", mongoDBURL);
@@ -36,13 +52,13 @@ if (process.env.NODE_ENV === "production") {
   const __dirname = path.dirname(__filename);
 
   // Serve static files from the frontend build directory
-  const clientPath = path.join(__dirname, "../client", "dist");
+  const clientPath = path.join(__dirname, "../client/dist");
 
   app.use(express.static(clientPath));
 
   // Handle all other routes by sending index.html
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+    res.sendFile(path.join(clientPath, "index.html"));
   });
 }
 
