@@ -15,6 +15,7 @@ const Home = () => {
   console.log('books', books)
 
   useEffect(() => {
+    console.log('Making GET request to', `${baseUrl}/books`)
     setLoading(true)
     axios
       .get(`${baseUrl}/books`)
@@ -25,7 +26,7 @@ const Home = () => {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error.message)
         setLoading(false)
       })
   }, [])
