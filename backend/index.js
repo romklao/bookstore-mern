@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === "production") {
 
   // Handle all other routes by sending index.html
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
   });
 }
 
