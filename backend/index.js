@@ -23,8 +23,14 @@ app.use(cors());
 //   })
 // );
 
+app.get("/", (request, response) => {
+  response.send("Welcoome to MERN stack tutorial");
+});
+
+app.use("/books", booksRoute);
+
 app.use((req, res, next) => {
-  res.setHeader("Cache-Control", "no-store"); // Prevent caching
+  res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none"); // Adjust value as needed
   next();
 });
 
@@ -45,17 +51,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(clientPath, "index.html"));
   });
 }
-
-app.get("/", (request, response) => {
-  response.send("Welcoome to MERN stack tutorial");
-});
-
-app.use("/books", booksRoute);
-
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none"); // Adjust value as needed
-  next();
-});
 
 app.listen(PORT, () => {
   console.log(`App is listening to port: ${PORT}`);
