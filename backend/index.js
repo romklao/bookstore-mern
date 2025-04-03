@@ -17,7 +17,7 @@ app.use(express.json());
 // Option 2: Allow Custom Origins
 app.use(
   cors({
-    origin: "https://bookstore-mern-9bc618ec0bda.herokuapp.com/", // Allow any origin (use specific domains for production)
+    origin: "*", // Allow any origin (use specific domains for production)
     methods: "GET, POST, PUT, DELETE",
     allowedHeaders: "Content-Type, Origin, Referer, Authorization", // Ensure headers like Referer are allowed
   })
