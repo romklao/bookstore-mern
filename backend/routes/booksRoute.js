@@ -46,7 +46,8 @@ router.get("/", async (request, response) => {
 router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
-    console.log("id", id);
+    console.log("Request URL:", request.originalUrl); // Log the full URL
+    console.log("ID param:", id);
     if (!Types.ObjectId.isValid(id)) {
       return response.status(400).send({ message: "Invalid book ID" });
     }
