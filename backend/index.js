@@ -23,9 +23,9 @@ app.use(cors());
 //   })
 // );
 
-app.get("/", (request, response) => {
-  response.send("Welcoome to MERN stack tutorial");
-});
+// app.get("/", (request, response) => {
+//   response.send("Welcoome to MERN stack tutorial");
+// });
 
 app.use("/books", booksRoute);
 
