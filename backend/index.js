@@ -23,6 +23,11 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-store"); // Prevent caching
+  next();
+});
+
 if (process.env.NODE_ENV === "production") {
   // Resolve __dirname in ES modules
   console.log("Connecting to MongoDB with URL:", mongoDBURL);
