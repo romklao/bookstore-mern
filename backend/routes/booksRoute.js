@@ -1,6 +1,5 @@
 import { Book } from "../models/bookModel.js";
 import { Router } from "express";
-import { Types } from "mongoose";
 
 const router = Router();
 
@@ -31,17 +30,14 @@ router.post("/", async (request, response) => {
 });
 
 router.get("/", async (request, response) => {
-  console.log("books route hit");
-
   try {
     const books = await Book.find();
-    if (books.length === 0) {
-      return response.status(200).send({ count: 0, data: [] });
+    if (books) {
+      return response.status(200).send({
+        count: books.length,
+        data: books,
+      });
     }
-    return response.status(200).send({
-      count: books.length,
-      data: books,
-    });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
@@ -51,11 +47,6 @@ router.get("/", async (request, response) => {
 router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
-    console.log("Request URL:", request.originalUrl); // Log the full URL
-    console.log("ID param:", id);
-    if (!Types.ObjectId.isValid(id)) {
-      return response.status(400).send({ message: "Invalid book ID" });
-    }
     const book = await Book.findById(id);
     if (book) {
       return response.status(200).send(book);

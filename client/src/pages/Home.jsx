@@ -11,16 +11,12 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [showType, setShowType] = useState('table')
   const baseUrl = import.meta.env.VITE_APP_API_BASE_URL
-  console.log('books', books)
 
   useEffect(() => {
-    console.log('Making GET request to', `${baseUrl}/books`)
     setLoading(true)
     axios
       .get(`${baseUrl}/books`)
       .then((response) => {
-        console.log('Books fetched:', response.data)
-
         setBooks(response.data.data)
         setLoading(false)
       })
